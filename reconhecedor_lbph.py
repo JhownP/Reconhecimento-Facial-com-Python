@@ -29,9 +29,9 @@ class ReconhecerLBPH:
                     nome = 'José'
 
                 cv2.putText(imagem, nome, (x,y + (a+30)), font, 2, (0, 0, 255), 2)
-                cv2.putText(imagem, str(confianca), (x,y + (a+50)), font, 2, (0, 0, 255), 2)
+                cv2.putText(imagem, str('{:.2f}'.format(confianca)), (x,y + (a+70)), font, 2, (0, 0, 255), 2)
 
-            cv2.imshow("Face", imagem)
+            cv2.imshow("Reconhecimento Facial em LBPH", imagem)
             if cv2.waitKey(1) == ord('q'):
                 break
 

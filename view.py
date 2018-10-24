@@ -1,14 +1,22 @@
 from tkinter import *
+
 import captura
 import treinamento
 import reconhecedor_lbph
 import reconhecedor_eigenfaces
 import reconhecedor_fisherfaces
+import popup
 
 class Application:
     def __init__(self, master=None):
+
+        frm_width = root.winfo_rootx() - root.winfo_x()
+        win_width = 500 + 2 * frm_width
+        win_height = 300 + frm_width
+        x = root.winfo_screenwidth() // 2 - win_width // 2
+        y = root.winfo_screenheight() // 2 - win_height // 2
+        root.geometry('500x300+{}+{}'.format(x, y))
         root.title("APS - Sistema de Reconhecimento Facial")
-        root.geometry("500x320+100+50")
         root['bg'] = '#353b48'
 
         self.fontePadrao = ("Arial", "10")
@@ -134,22 +142,37 @@ class Application:
         if nome != "":
             captura.Captura(nome)
         else:
-            print("Para Capturar as Imagens Digite o Seu Nome!!")
-
+            self.popUp()
 
     def treinamento(self):
         mensagem = "Iniciando Treinamento"
         treinamento.Treinamento(mensagem)
 
     def reconhecerEigen(self):
-        reconhecedor_eigenfaces.ReconhecerEigenFaces
+        reconhecedor_eigenfaces.ReconhecerEigenFaces()
 
     def reconhecerFisher(self):
-        reconhecedor_fisherfaces.ReconhecerFisherFaces
+        reconhecedor_fisherfaces.ReconhecerFisherFaces()
 
     def reconhecerLBPH(self):
-        reconhecedor_lbph.ReconhecerLBPH
+        reconhecedor_lbph.ReconhecerLBPH()
 
+    def popUp(self):
+
+        semNome = Tk()
+        semNome.title("Erro 404 - Nome Não Encontrado")
+
+        frm_width = semNome.winfo_rootx() - semNome.winfo_x()
+        win_width = 500 + 2 * frm_width
+        win_height = 120 + frm_width
+        x = semNome.winfo_screenwidth() // 2 - win_width // 2
+        y = semNome.winfo_screenheight() // 2 - win_height // 2
+
+        semNome.geometry('500x120+{}+{}'.format(x, y))
+        semNome['bg'] = '#353b48'
+
+        popup.Popup(semNome)
+        semNome.mainloop()
 
 root = Tk()
 Application(root)

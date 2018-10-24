@@ -13,36 +13,34 @@ class Treinamento:
 
         def getImagemComId():
             caminhos = [os.path.join('fotos', f) for f in os.listdir('fotos')]
-            # print(caminhos)
             faces = []
-            ids = []
+            nomes = []
 
             for caminhoImagem in caminhos:
                 imagemFace = cv2.cvtColor(cv2.imread(caminhoImagem), cv2.COLOR_BGR2GRAY)
-                nome = os.path.split(caminhoImagem)[-1].split('.')[1]
-                print(id)
-                nomes.append(id)
+                nome = int(os.path.split(caminhoImagem)[-1].split('.')[1])
+                nomes.append(nome)
                 faces.append(imagemFace)
 
                 # cv2.imshow("Face", imagemFace)
                 # cv2.waitKey(10)
-            return np.array(ids), faces
+            return np.array(nomes), faces
 
-        ids, faces = getImagemComId()
+        nomes, faces = getImagemComId()
         # print(faces)
 
         print("Treinando....")
 
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO EIGENFACES
-        eigenface.train(faces, ids)
+        eigenface.train(faces, nomes)
         eigenface.write('classificadorEigen.yml')
 
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO FISHERFACE
-        fisherface.train(faces, ids)
+        fisherface.train(faces, nomes)
         fisherface.write('classificadorFisher.yml')
 
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO LBPH
-        lbph.train(faces, ids)
+        lbph.train(faces, nomes)
         lbph.write('classificadorLBPH.yml')
 
         mensagem = "Treinamento concluido com Sucesso!!!!"
