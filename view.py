@@ -12,10 +12,10 @@ class Application:
 
         frm_width = root.winfo_rootx() - root.winfo_x()
         win_width = 500 + 2 * frm_width
-        win_height = 300 + frm_width
+        win_height = 380 + frm_width
         x = root.winfo_screenwidth() // 2 - win_width // 2
         y = root.winfo_screenheight() // 2 - win_height // 2
-        root.geometry('500x300+{}+{}'.format(x, y))
+        root.geometry('500x380+{}+{}'.format(x, y))
         root.title("APS - Sistema de Reconhecimento Facial")
         root['bg'] = '#353b48'
 
@@ -31,6 +31,12 @@ class Application:
         self.segundoContainer["padx"] = 80
         self.segundoContainer["bg"] = '#353b48'
         self.segundoContainer.pack()
+
+        self.segundoContainerId = Frame(master)
+        self.segundoContainerId["padx"] = 80
+        self.segundoContainerId["pady"] = 10
+        self.segundoContainerId["bg"] = '#353b48'
+        self.segundoContainerId.pack()
 
         self.terceiroContainer = Frame(master)
         self.segundoContainer["padx"] = 80
@@ -78,6 +84,16 @@ class Application:
         self.nome["width"] = 30
         self.nome["font"] = self.fontePadrao
         self.nome.pack(side=LEFT)
+
+        self.idLabel = Label(self.segundoContainerId, text="ID     ", font=self.fontePadrao)
+        self.idLabel["bg"] = '#353b48'
+        self.idLabel["fg"] = '#f5f6fa'
+        self.idLabel.pack(side=LEFT)
+
+        self.id = Entry(self.segundoContainerId)
+        self.id["width"] = 30
+        self.id["font"] = self.fontePadrao
+        self.id.pack(side=LEFT)
 
         # TERCEIRO CONTAINER
         # Botão de Abrir o Capturador de Fotos
@@ -139,14 +155,15 @@ class Application:
     # Método verificar senha
     def capturaImagem(self):
         nome = self.nome.get()
+        id = self.id.get()
         if nome != "":
-            captura.Captura(nome)
+            captura.Captura(nome, id)
         else:
             self.popUp()
 
     def treinamento(self):
         mensagem = "Iniciando Treinamento"
-        treinamento.Treinamento(mensagem)
+        treinamento.Treinamento()
 
     def reconhecerEigen(self):
         reconhecedor_eigenfaces.ReconhecerEigenFaces()

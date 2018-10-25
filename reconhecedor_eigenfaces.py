@@ -1,4 +1,5 @@
 import cv2
+import os
 
 class ReconhecerEigenFaces:
     def __init__(self):
@@ -22,11 +23,7 @@ class ReconhecerEigenFaces:
                 imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
                 cv2.rectangle(imagem, (x,y), (x + l, y + a), (0, 0, 255), 2)
                 id, confianca = reconhecedor.predict(imagemFace)
-                nome = ""
-                if id == 1:
-                    nome = 'Jonatas'
-                elif id == 2:
-                    nome = 'José'
+                nome = ReconhecerEigenFaces.getNome(self)
 
                 cv2.putText(imagem, nome, (x,y + (a+30)), font, 2, (0, 0, 255), 2)
                 cv2.putText(imagem, str('{:.2f}'.format(confianca)), (x,y + (a+70)), font, 2, (0, 0, 255), 2)
@@ -37,3 +34,11 @@ class ReconhecerEigenFaces:
 
         camera.release()
         cv2.destroyAllWindows()
+
+    def getNome(self):
+        caminhos = [os.path.join('fotos', f) for f in os.listdir('fotos')]
+
+        for caminhoImagem in caminhos:
+            nome = os.path.split(caminhoImagem)[-1].split('.')[1]
+            print(nome)
+        return nome

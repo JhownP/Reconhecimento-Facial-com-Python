@@ -4,7 +4,7 @@ class Popup:
 
     def __init__(self, error=None):
 
-        self.mensagem = "Campo do Nome Não foi Preenchido"
+        self.mensagem = "Campo do Nome ou Id Não foi Preenchido"
         self.mensagemDois = "Preencha Para Capturar Imagens"
 
         self.primeiroContainerError = Frame(error)
