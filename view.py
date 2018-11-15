@@ -1,5 +1,7 @@
+# encoding: utf-8
 from tkinter import *
 
+import os
 import captura
 import treinamento
 import reconhecedor_lbph
@@ -157,8 +159,12 @@ class Application:
         nome = self.nome.get()
         id = self.id.get()
         if nome != "":
+            os.system('cls')
+            print("Iniciando a Captura de Imagens")
             captura.Captura(nome, id)
         else:
+            os.system('cls')
+            print("Falha ao Capturar Imagens Informe o Nome e o ID")
             self.popUp()
 
     def treinamento(self):

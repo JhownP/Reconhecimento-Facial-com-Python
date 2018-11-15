@@ -17,20 +17,26 @@ class Treinamento:
 
         print("Treinando....")
 
+        print("\n\nIniciando Treinamento EigenFaces")
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO EIGENFACES
         eigenface.train(faces, ids)
         eigenface.write('classificadorEigen.yml')
+        print(eigenface)
 
+        print("\n\nIniciando Treinamento FisherFaces")
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO FISHERFACE
         fisherface.train(faces, ids)
         fisherface.write('classificadorFisher.yml')
+        print(fisherface)
 
+        print("\n\nIniciando Treinamento LBPH")
         # MOMENTO QUE PASSA AS INFORMAÇÕES PARA O TREINAMENTO DO LBPH
         lbph.train(faces, ids)
         lbph.write('classificadorLBPH.yml')
+        print(lbph)
 
-        print("Treinamento concluido com Sucesso!!!!")
-
+        print("\n\nTreinamento concluido com Sucesso!!!!")
+        os.system('cls')
     def getImagemComId(self):
         caminhos = [os.path.join('fotos', f) for f in os.listdir('fotos')]
         faces = []
@@ -39,10 +45,9 @@ class Treinamento:
         for caminhoImagem in caminhos:
             imagemFace = cv2.cvtColor(cv2.imread(caminhoImagem), cv2.COLOR_BGR2GRAY)
 
-            print(imagemFace)
+            id = int(os.path.split(caminhoImagem)[-1].split('.')[1])
 
-            id = int(os.path.split(caminhoImagem)[-1].split('.')[2])
-            print(id)
+            print(caminhoImagem)
 
             ids.append(id)
             faces.append(imagemFace)
