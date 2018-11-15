@@ -12,6 +12,7 @@ class ReconhecerFisherFaces:
 
         camera = cv2.VideoCapture(0)
 
+        # VERIFICADOR DE FACES AONDE IREMOS LISTAR E CHAMAR O MÉTODO DE RECONHECIMENTO DE NOMES
         while (True):
             conectado, imagem = camera.read()
             imagemCinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
@@ -37,6 +38,7 @@ class ReconhecerFisherFaces:
         camera.release()
         cv2.destroyAllWindows()
 
+    # MÉTODO QUE INFORMA O NOME RECONHECIDO
     def getNome(self, idPrevisto):
         caminhos = [os.path.join('fotos', f) for f in os.listdir('fotos')]
 

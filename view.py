@@ -12,6 +12,7 @@ import popup
 class Application:
     def __init__(self, master=None):
 
+        # DEFINDO A TELA
         frm_width = root.winfo_rootx() - root.winfo_x()
         win_width = 500 + 2 * frm_width
         win_height = 380 + frm_width
@@ -154,7 +155,7 @@ class Application:
         self.obs["fg"] = '#f5f6fa'
         self.obs.pack(side=LEFT)
 
-    # Método verificar senha
+    # MÉTODO VERIFICADOR DE NOME E ID
     def capturaImagem(self):
         nome = self.nome.get()
         id = self.id.get()
@@ -167,19 +168,24 @@ class Application:
             print("Falha ao Capturar Imagens Informe o Nome e o ID")
             self.popUp()
 
+    # MÉTODO DE TREINAMENTO DO ALGORITMOS
     def treinamento(self):
         mensagem = "Iniciando Treinamento"
         treinamento.Treinamento()
 
+    # CHAMANDO O RECONHECEDOR EIGENFACES
     def reconhecerEigen(self):
         reconhecedor_eigenfaces.ReconhecerEigenFaces()
 
+    # CHAMANDO O RECONHECEDOR FISHERFACES
     def reconhecerFisher(self):
         reconhecedor_fisherfaces.ReconhecerFisherFaces()
 
+    # CHAMANDO O RECONHECEDOR LBPH
     def reconhecerLBPH(self):
         reconhecedor_lbph.ReconhecerLBPH()
 
+    # ABRINDO O POPUP DE MENSAGEM DE NÃO TER INSERIDO O NOME E O ID
     def popUp(self):
 
         semNome = Tk()

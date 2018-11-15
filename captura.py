@@ -34,6 +34,8 @@ class Captura:
                     cv2.rectangle(regiao, (ox, oy), (ox + ol, oy + oa), (0, 255, 0), 2)
 
                     if cv2.waitKey(1) & 0xFF == ord('q'):
+
+                        # Linha Ao qual define o valor da Iluminação dos olhos e da face
                         if np.average(imagemCinza) > 110: # VALOR QUE DEFINE A LUMINOSIDADE
                             imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
                             cv2.imwrite("fotos/" + nome + "." + id + "." + str(amostra) + ".jpg", imagemFace)

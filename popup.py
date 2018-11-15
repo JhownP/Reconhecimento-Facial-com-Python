@@ -1,7 +1,9 @@
 from tkinter import *
 
 class Popup:
-
+    
+    
+    # ESTÁ CLASSE MONTA SOMENTE A TELA DE AVISO SEM INTERAÇÃO ALGUMA
     def __init__(self, error=None):
 
         self.mensagem = "Campo do Nome ou Id Não foi Preenchido"
