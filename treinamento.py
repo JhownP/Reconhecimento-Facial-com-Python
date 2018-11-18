@@ -1,5 +1,6 @@
 import cv2
 import os
+#include "opencv2/face.hpp"
 import numpy as np
 from numpy.core.multiarray import ndarray
 
